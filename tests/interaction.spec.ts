@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Acciones en el Automation Sandbox', () => {
   test('Click en botón ID dinámico', async ({ page }) => {
     await test.step('Navegar al sitio web', async () => {
-      await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/')
+      await page.goto('')
     })
 
     await test.step('Hacer click en el botón con Id dinámico', async () => {
@@ -24,7 +24,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
   test('Llenar un campo de texto', async ({ page }) => {
     const message = 'Mensaje de prueba'
     await test.step('Navegar al sitio web', async () => {
-      await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/')
+      await page.goto('')
     })
     await test.step('Ingresar texto en el campo', async () => {
       await expect(page.getByPlaceholder('Ingresá texto'), 'El campo de texto no es editable').toBeEditable()
@@ -35,7 +35,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
   test('Seleccionar y deseleccionar checkbox', async ({ page }) => {
     await test.step('Navegar al sitio web', async () => {
-      await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/')
+      await page.goto('')
     })
     await test.step('Seleccionar el checkbox', async () => {
       const checkbox = page.getByRole('checkbox', { name: 'Pasta 🍝' })
@@ -60,7 +60,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
   test('Seleccionar un radio button', async ({ page }) => {
     await test.step('Navegar al sitio web', async () => {
-      await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/')
+      await page.goto('')
     })
     await test.step('Seleccionar el radio button', async () => {
       await page.getByRole('radio', { name: 'Si' }).check()
@@ -69,7 +69,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
   test('Seleccionar un item del Dropdown', async ({ page }) => {
     await test.step('Navegar al sitio web', async () => {
-      await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/')
+      await page.goto('')
     })
     await test.step('Seleccionar un item', async () => {
       await page.getByLabel('Dropdown').selectOption('Tennis')
@@ -78,7 +78,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
   test('Los items del Dropdown son los esperados', async ({ page }) => {
     await test.step('Navegar al sitio web', async () => {
-      await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/')
+      await page.goto('')
     })
     await test.step('Validando la lista de items', async () => {
       const options = ['Fútbol', 'Tennis', 'Basketball']
@@ -94,7 +94,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
   test('Seleccionar un item del Dropdown "Día de la semana"', async ({ page }) => {
     await test.step('Navegar al sitio web', async () => {
-      await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/')
+      await page.goto('')
     })
     await test.step('Seleccionar un item', async () => {
       await page.getByRole('button', { name: 'Día de la semana' }).click()
@@ -104,7 +104,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
   test('Validando la columna "Nombre" en la tabla estática', async ({ page }) => {
     await test.step('Navegar al sitio web', async () => {
-      await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/')
+      await page.goto('')
     })
     await test.step('Validar los elementos de la columna', async () => {
       const columnValues = await page.$$eval(
@@ -118,7 +118,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
   test('Validando los valores de la tabla dinámica', async ({ page }) => {
     await test.step('Navegar al sitio web', async () => {
-      await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/')
+      await page.goto('')
     })
     await test.step('Validando que los valores cambiaron después de un reload', async () => {
       const tableValues = await page.$$eval('h2:has-text("Tabla dinámica") + table tbody tr td', (elements) =>
@@ -132,15 +132,30 @@ test.describe('Acciones en el Automation Sandbox', () => {
     })
   })
 
-  test('Validando dentro del popup', async ({ page }) => {
+  test.only('Validando dentro del popup', async ({ page, browserName }) => {
+    // saltar el test bajo una condición
+    // test.skip(browserName === 'chromium', 'Aún no se puede ejecutar en Chromiun')
+    test.info().annotations.push({ type: 'issue', description: 'Prueba de issue' })
+
+    // obtener un screenshot
+    await test.info().attach('screenshot', {
+      body: await page.screenshot(),
+      contentType: 'image/png'
+    })
+
     await test.step('Navegar al sitio web', async () => {
-      await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/')
+      await page.goto('')
     })
     await test.step('Hacer click en el botón para abrir el popup', async () => {
       await page.getByRole('button', { name: 'Mostrar popup' }).click()
     })
     await test.step('Validando un elemento dentro del popup', async () => {
       await expect(page.getByText('¿Viste? ¡Apareció un Pop-up!')).toHaveText('¿Viste? ¡Apareció un Pop-up!')
+      // obtener un screenshot
+      await test.info().attach('screenshot', {
+        body: await page.screenshot(),
+        contentType: 'image/png'
+      })
       await page.getByRole('button', { name: 'Close' }).click()
     })
   })

@@ -10,6 +10,21 @@ Hay herramientas que permiten probar de principio a fin los flujos de usuarios d
 
 ![Desafíos](public/images/desafios.png)
 
+### Algunos comandos de Terminal
+
+- `pnpm exec playwright test <archivo>`: ejecutar un archivo en particular.
+- `pnpm exec playwright test <archivo> --project=chromium`: ejecutar un archivo solo en Chromium o en algún otro proyecto personalizado.
+- `pnpm exec playwright test --ui`: modo UI.
+- `pnpm exec playwright show-report`: mostrar un reporte.
+
+### Crear test sin escribir código
+
+Con las herramientas que nos da la [extensión](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright), podemos hacer lo siguiente:
+
+- **Record new**: abre una nueva instancia de Chrome y nos generará un archivo de test donde irá guardando todos los locators en donde se hizo click (no escribe los expect o validaciones).
+- **Record at cursor**: similar a lo anterior, pero comienza a grabar en un archivo existente y donde este posicionado el cursor.
+- `pnpm exec playwright codegen <url>`: abre un inspector de la url indicada en donde podremos ir viendo todo lo que se va generando.
+
 ## Locators (Selectores)
 
 - `getByRole`: buscar por rol, ideal para botones, enlaces, encabezados y más.
@@ -59,3 +74,13 @@ Existen las **Soft Assertions** que son aserciones que fallan pero que no impide
   - `toBeEditable`: que un campo sea editable
   - `toHaveValue`: obtener el valor de un input, existe también para obtener varios valores con `toHaveValues`
   - `toHaveText`: obtener el texto de un elemento
+
+## Anotaciones
+
+Nos permite manipular la ejecución de las pruebas, siempre van después de test, ejemplo: `test.skip()`.
+
+- `skip`: saltarse un caso de prueba.
+- `only`: ejecutar solo ese test.
+- `info`: permite anotaciones personalizadaslas cuales se verán en el reporte, también permite capturar un screenshot.
+- `fail`: indicar explícitamente que un test falle, quizas por estar incompleto en ese momento.
+- `pnpm exec playwright test --grep <expresion>`: permite ejecutar test **agrupados** mediante una expresión desde la Terminal, por ejemplo: `pnpm exec playwright test --grep @Sandox` ejecutará todos aquellos test que tengan la expresión _@Sandbox_ dentro de `test`.
