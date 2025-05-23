@@ -84,3 +84,11 @@ Nos permite manipular la ejecución de las pruebas, siempre van después de test
 - `info`: permite anotaciones personalizadaslas cuales se verán en el reporte, también permite capturar un screenshot.
 - `fail`: indicar explícitamente que un test falle, quizas por estar incompleto en ese momento.
 - `pnpm exec playwright test --grep <expresion>`: permite ejecutar test **agrupados** mediante una expresión desde la Terminal, por ejemplo: `pnpm exec playwright test --grep @Sandox` ejecutará todos aquellos test que tengan la expresión _@Sandbox_ dentro de `test`.
+
+## API Testing
+
+Aunque la naturaleza de PW es el E2E Testing, nos puede ayudar a realizar E2E testing de APIs (pero **no** se recomendaría para realizar pruebas **puras** de API o de integración).
+
+**_Créditos_**
+
+👉 [https://www.udemy.com/course/dominando-playwright-con-typescript-e2e-testing-moderno](https://www.udemy.com/course/dominando-playwright-con-typescript-e2e-testing-moderno)
