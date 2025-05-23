@@ -12,7 +12,7 @@ test.beforeAll(async ({ playwright }) => {
     extraHTTPHeaders: {
       Accept: 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
-      Authorization: `Bearer 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`
+      Authorization: `Bearer _`
     }
   })
 })

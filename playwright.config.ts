@@ -47,7 +47,7 @@ export default defineConfig({
         extraHTTPHeaders: {
           Accept: 'application/vnd.github+json',
           'X-GitHub-Api-Version': '2022-11-28',
-          Authorization: 'Bearer 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'
+          Authorization: 'Bearer _'
           // Authorization: `Bearer ${process.env.GITHUB_TOKEN}`
         }
       }
