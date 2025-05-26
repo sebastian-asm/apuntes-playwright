@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { Sandbox } from './Pages/SandboxPage'
 
 test.describe('Acciones en el Automation Sandbox', () => {
   test('Click en botón ID dinámico', async ({ page }) => {
@@ -38,9 +39,14 @@ test.describe('Acciones en el Automation Sandbox', () => {
       await page.goto('')
     })
     await test.step('Seleccionar el checkbox', async () => {
-      const checkbox = page.getByRole('checkbox', { name: 'Pasta 🍝' })
-      await checkbox.check()
-      await expect(checkbox).toBeChecked()
+      // const checkbox = page.getByRole('checkbox', { name: 'Pasta 🍝' })
+      // await checkbox.check()
+      // await expect(checkbox).toBeChecked()
+
+      // versión POM
+      const sandbox = new Sandbox(page)
+      await sandbox.checkPasta()
+      await expect(sandbox.pastaCheckbox, 'El checkbox no está seleccionado').toBeChecked()
     })
     await test.step('Deseleccionar el checkbox', async () => {
       const checkbox = page.getByRole('checkbox', { name: 'Pasta 🍝' })

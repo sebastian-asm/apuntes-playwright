@@ -89,6 +89,25 @@ Nos permite manipular la ejecución de las pruebas, siempre van después de test
 
 Aunque la naturaleza de PW es el E2E Testing, nos puede ayudar a realizar E2E testing de APIs (pero **no** se recomendaría para realizar pruebas **puras** de API o de integración).
 
+## Page Object Model (POM)
+
+Es una clase donde se declara el modelo de la web, se definen los locators y las acciones (o métodos) que se puede realizar con esos locators los cuales son llamados desde los tests. Estos pueden ser llamados mútiples veces pero el origen siempre será el mismo. Los métodos del POM no deberían contener verificaciones con el objetivo de mantener mejor legibilidad y que sea más mantenible el POM.
+
+## Mock
+
+Los mocks nos permiten simular respuestas de APIs, lo cual es útil cuando se quiere probar una aplicación sin depender de respuestas reales de una API externa o cuando aún no a sido desarrollada.
+
+- `route`: se usa para interceptar y modificar la respuesta de una API durante la ejecución de un test.
+
+## Mejores prácticas
+
+- Cada test debería ser independiente, se puede escribir test en modo secuencial pero no son recomendables.
+- Usar validaciones que usan el `await` antes del `expect`.
+- Usar mensajes de errores personalizados en los `expect`.
+- Usar los locators que ofrece PW (Pick locator).
+- Evitar testear cosas que no se pueden controlar mediante el equipo de devs.
+- Implementar POM.
+
 **_Créditos_**
 
 👉 [https://www.udemy.com/course/dominando-playwright-con-typescript-e2e-testing-moderno](https://www.udemy.com/course/dominando-playwright-con-typescript-e2e-testing-moderno)
